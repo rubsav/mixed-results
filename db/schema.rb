@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027182324) do
+ActiveRecord::Schema.define(version: 20150718183359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,15 +95,6 @@ ActiveRecord::Schema.define(version: 20151027182324) do
   add_index "locations", ["country_code"], name: "index_locations_on_country_code", using: :btree
   add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
-  create_table "opinions", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "question_id"
-    t.string   "vote_type"
-  end
-
   create_table "questions", force: true do |t|
     t.string   "label"
     t.datetime "created_at"
@@ -114,9 +105,8 @@ ActiveRecord::Schema.define(version: 20151027182324) do
     t.integer  "user_id"
     t.integer  "group_id"
     t.integer  "votecount",              default: 0
+    t.boolean  "answer_plus"
     t.string   "image_link"
-    t.boolean  "shared_image"
-    t.integer  "tag_count",              default: 0
   end
 
   create_table "sessions", force: true do |t|
@@ -140,18 +130,6 @@ ActiveRecord::Schema.define(version: 20151027182324) do
     t.integer  "user_id"
     t.boolean  "wants_subscription"
     t.text     "created_by"
-  end
-
-  create_table "tags", force: true do |t|
-    t.string   "label"
-    t.integer  "question_id"
-    t.integer  "counter"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "x_ratio"
-    t.float    "y_ratio"
-    t.integer  "reply_id",    default: 0
-    t.integer  "level",       default: 0
   end
 
   create_table "users", force: true do |t|
