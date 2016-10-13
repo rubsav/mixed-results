@@ -55,6 +55,7 @@ gem 'underscore-rails'
 gem 'twitter-typeahead-rails'
 gem 'whenever', require: false
 gem 'friendly_id', '~> 5.0.4'
+gem 'rails_12factor'
 
 group :production do
   # because capistrano fails otherwise
